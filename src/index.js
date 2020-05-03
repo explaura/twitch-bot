@@ -33,7 +33,7 @@ client.on('message', async (channel, tags, message, self) => {
 
   if (message.toLowerCase() === HELP_COMMAND) {
     try {
-      client.say(
+      return client.say(
         channel,
         `@${tags.username}, use the command !shots to pour ${STREAMER_CHANNEL} a shot`
       );
@@ -42,11 +42,12 @@ client.on('message', async (channel, tags, message, self) => {
         err,
         message: `failed to handle ${HELP_COMMAND} command`,
       });
+      return err;
     }
   } else if (message.toLowerCase() === SHOTS_COMMAND) {
     try {
       // TODO: call microcontroller API to kick off pour process
-      client.say(
+      return client.say(
         channel,
         `@${tags.username}, pouring ${STREAMER_CHANNEL} a shot`
       );
@@ -55,6 +56,7 @@ client.on('message', async (channel, tags, message, self) => {
         err,
         message: `failed to handle ${SHOTS_COMMAND} command`,
       });
+      return err;
     }
   }
 });
