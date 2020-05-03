@@ -10,3 +10,7 @@ lint:
 install:
 	npm install
 .PHONY: install
+
+start:
+	npm start
+.PHONY: start

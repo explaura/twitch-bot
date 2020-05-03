@@ -45,5 +45,5 @@ First ensure you have the environment variables populated in `.env` file before 
 
 To spin up the local service, run:
 ```bash
-node src/twitch/index.js
+make start
 ```
