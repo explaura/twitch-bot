@@ -4,7 +4,7 @@
   "description": "A chatbot for Twitch",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "env-cmd node src/index.js",
     "lint": "eslint --ext .js 'src/**/*.js'",
     "lint:fix": "npm run lint -- --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -33,6 +33,7 @@
   "devDependencies": {
     "@types/node": "^13.11.0",
     "dotenv": "^8.2.0",
+    "env-cmd": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
