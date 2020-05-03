@@ -4,6 +4,8 @@
   "description": "A chatbot for Twitch",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint --ext .js 'src/**/*.js'",
+    "lint:fix": "npm run lint -- --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +25,22 @@
   },
   "homepage": "https://github.com/explaura/twitch-bot#readme",
   "dependencies": {
-    "tmi.js": "^1.5.0"
+    "tmi.js": "^1.5.0",
+    "bunyan": "^1.8.12",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.11.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "prettier": "^2.0.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint"
+    }
   }
 }
