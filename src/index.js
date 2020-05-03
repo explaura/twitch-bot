@@ -20,7 +20,7 @@ const client = new tmi.Client({
 
 client.connect();
 
-client.on("message", (channel, tags, message, self) => {
+client.on("message", async (channel, tags, message, self) => {
   // ignore echoed messages
   if (self) return;
 
@@ -30,6 +30,7 @@ client.on("message", (channel, tags, message, self) => {
       `@${tags.username}, use the command !shots to pour ${STREAMER_CHANNEL} a shot`
     );
   } else if (message.toLowerCase() === SHOTS_COMMAND) {
+    // TODO: call microcontroller API to kick off pour process
     return client.say(
       channel,
       `@${tags.username}, pouring ${STREAMER_CHANNEL} a shot`
