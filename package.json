@@ -1,0 +1,28 @@
+{
+  "name": "twitch-bot",
+  "version": "1.0.0",
+  "description": "A chatbot for Twitch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/explaura/twitch-bot.git"
+  },
+  "keywords": [
+    "twitch",
+    "chatbot",
+    "nodejs",
+    "tmi"
+  ],
+  "author": "Laura Brandon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/explaura/twitch-bot/issues"
+  },
+  "homepage": "https://github.com/explaura/twitch-bot#readme",
+  "dependencies": {
+    "tmi.js": "^1.5.0"
+  }
+}
