@@ -18,6 +18,12 @@ To generate an OAuth token (used for authorising bot to access your Twitch chann
 
 **Note**: The token value is currently stored in AWS SSM for security (protip: avoid secrets as env vars).
  
+### Heroku CLI
+Heroku is used to host the bot. CLI commands can be used to retrieve logs, deploy from local, etc. To install:
+```
+brew tap heroku/brew && brew install heroku
+```
+
 ## Dependencies
 To install NPM dependencies:
 
@@ -34,9 +40,16 @@ npm run lint
 
 ## Deploying
 
-To build and deploy the service to Heroku, run:
-```bash
-make package deploy
+A git hook within Heroku is configured so every push to mainline will deploy off the master branch.
+
+To login to Heroku:
+```
+heroku login
+```
+
+To view server logs, run:
+```
+heroku logs -a {app-name-here}
 ```
 
 ## Running locally
