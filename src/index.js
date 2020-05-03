@@ -35,7 +35,5 @@ client.on("message", async (channel, tags, message, self) => {
       channel,
       `@${tags.username}, pouring ${STREAMER_CHANNEL} a shot`
     );
-  } else {
-    return client.say(channel, `@${tags.username}, new fone who dis?`);
   }
 });

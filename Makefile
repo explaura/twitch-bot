@@ -1,6 +1,4 @@
-OAUTH_TOKEN ?= $(shell aws ssm get-parameter --name '/twitch/oauth-token' --with-decryption --query Parameter.Value --output text)
-
-default: lint test
+default: lint
 .PHONY: default
 
 lint:
