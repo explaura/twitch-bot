@@ -16,8 +16,6 @@ Install with [nvm](https://github.com/creationix/nvm)
 ### Twitch OAuth token
 To generate an OAuth token (used for authorising bot to access your Twitch channel), [visit here](https://twitchapps.com/tmi/). 
 
-**Note**: The token value is currently stored in AWS SSM for security.
- 
 ### Heroku CLI
 Heroku is used to host the bot. CLI commands can be used to retrieve logs, deploy from local, etc. To install:
 ```
