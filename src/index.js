@@ -1,4 +1,5 @@
 const tmi = require('tmi.js');
+const express = require('express');
 const { parse } = require('path');
 const { createLogger } = require('bunyan');
 
@@ -6,10 +7,18 @@ const OAUTH_TOKEN = process.env.OAUTH_TOKEN;
 const STREAMER_CHANNEL = process.env.STREAMER_CHANNEL;
 const HELP_COMMAND = '!help';
 const SHOTS_COMMAND = '!shots';
+const PORT = process.env.PORT || 3000;
 
 const logger = createLogger({
   name: parse(__filename).name,
   level: process.env.LOG_LEVEL || 'info',
+});
+
+const app = express();
+app.listen(PORT, () => {
+  logger.info({
+    message: `listening on ${PORT}`,
+  });
 });
 
 const client = new tmi.Client({
@@ -17,7 +26,7 @@ const client = new tmi.Client({
     debug: true,
   },
   connection: {
-    port: 3000,
+    port: PORT,
     secure: true,
     reconnect: true,
   },
