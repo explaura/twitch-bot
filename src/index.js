@@ -13,8 +13,11 @@ const logger = createLogger({
 });
 
 const client = new tmi.Client({
-  options: { debug: true },
+  options: {
+    debug: true,
+  },
   connection: {
+    port: 3000,
     secure: true,
     reconnect: true,
   },
@@ -27,7 +30,7 @@ const client = new tmi.Client({
 
 client.connect();
 
-client.on('message', async (channel, tags, message, self) => {
+client.on('message', (channel, tags, message, self) => {
   // ignore echoed messages
   if (self) return;
 
