@@ -39,6 +39,9 @@ const client = new tmi.Client({
 
 client.connect();
 
+// TODO: on connection, login to RPi users API
+// TODO: on disconnection, logout of RPi users API
+
 client.on('message', async (channel, tags, message, self) => {
   // ignore echoed messages
   if (self) return;
@@ -59,6 +62,7 @@ client.on('message', async (channel, tags, message, self) => {
     }
   } else if (message.toLowerCase() === SHOTS_COMMAND) {
     try {
+      // TODO: need to be able to SSH to RPi and call API hosted locally
       // TODO: call microcontroller API to kick off pour process
 
       return await client.say(

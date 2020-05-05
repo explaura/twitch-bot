@@ -1,7 +1,6 @@
 # Twitch Bot
 
 ## Overview
-
 A server-side application which listens for bot commands. Currently the bot actions are:
 - `!help` - returns a list of bot commands
 - `!shots` - send an API request to a server on a microcontroller and pours a shot
@@ -37,7 +36,6 @@ npm run lint
 ```
 
 ## Deploying
-
 A git hook within Heroku is configured so every push to mainline will deploy off the master branch.
 
 To login to Heroku:
@@ -51,7 +49,6 @@ heroku logs -a {app-name-here}
 ```
 
 ## Running locally
-
 First ensure you have the environment variables populated in `.env` file before running. These can be retrieved from SSM.
 
 To spin up the local service, run:
