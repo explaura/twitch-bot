@@ -8,7 +8,7 @@ const OAUTH_TOKEN = process.env.OAUTH_TOKEN;
 const STREAMER_CHANNEL = process.env.STREAMER_CHANNEL;
 const HELP_COMMAND = '!help';
 const SHOTS_COMMAND = '!shots';
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 
 const logger = createLogger({
   name: parse(__filename).name,

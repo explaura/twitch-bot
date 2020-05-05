@@ -11,8 +11,6 @@ const login = async () => {
   };
 
   const request = {
-    host: SHOT_BOT_URL,
-    path: '/users/login',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -20,7 +18,7 @@ const login = async () => {
     body: JSON.stringify(payload),
   };
 
-  const response = await fetch(SHOT_BOT_URL, request);
+  const response = await fetch(`${SHOT_BOT_URL}/users/login`, request);
   const body = await response.text();
 
   console.log('response body: ', JSON.stringify(body));
