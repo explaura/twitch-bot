@@ -2,6 +2,7 @@ const tmi = require('tmi.js');
 const express = require('express');
 const { parse } = require('path');
 const { createLogger } = require('bunyan');
+const login = require('./users/login');
 
 const OAUTH_TOKEN = process.env.OAUTH_TOKEN;
 const STREAMER_CHANNEL = process.env.STREAMER_CHANNEL;
@@ -40,7 +41,20 @@ const client = new tmi.Client({
 client.connect();
 
 // TODO: on connection, login to RPi users API
-// TODO: on disconnection, logout of RPi users API
+client.on('connected', async () => {
+  logger.info({
+    message: 'connected to twitch',
+  });
+
+  const loggedIn = await login();
+
+  logger.info({
+    loggedIn,
+    message: 'logged into shot bot',
+  });
+
+  return loggedIn;
+});
 
 client.on('message', async (channel, tags, message, self) => {
   // ignore echoed messages
@@ -81,4 +95,9 @@ client.on('message', async (channel, tags, message, self) => {
       return err;
     }
   }
+});
+
+// TODO: on disconnection, logout of RPi users API
+client.on('disconnected', async () => {
+  console.log('closed');
 });
