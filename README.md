@@ -16,7 +16,7 @@ Install with [nvm](https://github.com/creationix/nvm)
 To generate an OAuth token (used for authorising bot to access your Twitch channel), [visit here](https://twitchapps.com/tmi/). 
 
 ### Heroku CLI
-Heroku is used to host the bot. CLI commands can be used to retrieve logs, deploy from local, etc. To install:
+Heroku can be used to host the bot. CLI commands can be used to retrieve logs, deploy from local, etc. To install:
 ```
 brew tap heroku/brew && brew install heroku
 ```
@@ -36,7 +36,7 @@ npm run lint
 ```
 
 ## Deploying
-A git hook within Heroku is configured so every push to mainline will deploy off the master branch.
+If using Heroku to host, a git hook within Heroku can be configured so every push to your branch will deploy.
 
 To login to Heroku:
 ```
