@@ -3,6 +3,7 @@ const express = require('express');
 const { parse } = require('path');
 const { createLogger } = require('bunyan');
 const login = require('./users/login');
+const logout = require('./users/logout');
 
 const OAUTH_TOKEN = process.env.OAUTH_TOKEN;
 const STREAMER_CHANNEL = process.env.STREAMER_CHANNEL;
@@ -22,6 +23,7 @@ app.listen(PORT, () => {
   });
 });
 
+let token;
 const client = new tmi.Client({
   options: {
     debug: true,
@@ -40,19 +42,18 @@ const client = new tmi.Client({
 
 client.connect();
 
-client.on('connected', async (args) => {
+client.on('connected', async () => {
   logger.info({
-    args,
     message: 'connected to twitch',
   });
 
   try {
-    const loggedIn = await login();
+    token = await login();
     logger.info({
-      loggedIn,
+      token,
       message: 'logged into shot bot',
     });
-    return loggedIn;
+    return token;
   } catch (err) {
     logger.info({
       err,
@@ -102,7 +103,18 @@ client.on('message', async (channel, tags, message, self) => {
   }
 });
 
-// TODO: on disconnection, logout of RPi users API
 client.on('disconnected', async () => {
-  console.log('closed');
+  logger.info({
+    message: 'disconnected from twitch',
+  });
+
+  try {
+    return await logout(token);
+  } catch (err) {
+    logger.info({
+      err,
+      message: 'failed to logout of shot bot',
+    });
+    throw err;
+  }
 });
