@@ -84,11 +84,11 @@ client.on('message', async (channel, tags, message, self) => {
     }
   } else if (message.toLowerCase() === SHOTS_COMMAND) {
     try {
-      await toggleLed(token);
+      toggleLed(token);
 
       return await client.say(
         channel,
-        `@${tags.username}, pouring ${STREAMER_CHANNEL} a shot`
+        `@${tags.username} is pouring ${STREAMER_CHANNEL} a shot`
       );
     } catch (err) {
       await client.say(
