@@ -21,9 +21,11 @@ const login = async () => {
   const response = await fetch(`${SHOT_BOT_URL}/users/login`, request);
   const body = await response.text();
 
-  console.log('response body: ', JSON.stringify(body));
+  return getValidToken(body);
+};
 
-  return body;
+const getValidToken = (body) => {
+  return body.user.tokens[0].token;
 };
 
 module.exports = login;

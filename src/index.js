@@ -40,20 +40,26 @@ const client = new tmi.Client({
 
 client.connect();
 
-// TODO: on connection, login to RPi users API
-client.on('connected', async () => {
+client.on('connected', async (args) => {
   logger.info({
+    args,
     message: 'connected to twitch',
   });
 
-  const loggedIn = await login();
-
-  logger.info({
-    loggedIn,
-    message: 'logged into shot bot',
-  });
-
-  return loggedIn;
+  try {
+    const loggedIn = await login();
+    logger.info({
+      loggedIn,
+      message: 'logged into shot bot',
+    });
+    return loggedIn;
+  } catch (err) {
+    logger.info({
+      err,
+      message: 'failed to log into shot bot',
+    });
+    throw err;
+  }
 });
 
 client.on('message', async (channel, tags, message, self) => {
@@ -76,7 +82,6 @@ client.on('message', async (channel, tags, message, self) => {
     }
   } else if (message.toLowerCase() === SHOTS_COMMAND) {
     try {
-      // TODO: need to be able to SSH to RPi and call API hosted locally
       // TODO: call microcontroller API to kick off pour process
 
       return await client.say(
