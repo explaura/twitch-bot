@@ -4,7 +4,7 @@ const { parse } = require('path');
 const { createLogger } = require('bunyan');
 const login = require('./users/login');
 const logout = require('./users/logout');
-const toggleLed = require('./hardware/led');
+const togglePump = require('./hardware/pump');
 
 const OAUTH_TOKEN = process.env.OAUTH_TOKEN;
 const STREAMER_CHANNEL = process.env.STREAMER_CHANNEL;
@@ -84,7 +84,7 @@ client.on('message', async (channel, tags, message, self) => {
     }
   } else if (message.toLowerCase() === SHOTS_COMMAND) {
     try {
-      toggleLed(token);
+      togglePump(token);
 
       return await client.say(
         channel,
